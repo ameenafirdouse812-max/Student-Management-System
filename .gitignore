@@ -1,4 +1,559 @@
+import java.util.Scanner;
+
 public class StudentManagement {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("===== Student Management System =====");
+
+        System.out.print("Enter Student Name: ");
+        String name = sc.nextLine();
+
+        System.out.print("Enter Roll Number: ");
+        int rollNo = sc.nextInt();
+
+        System.out.print("Enter Marks: ");
+        int marks = sc.nextInt();
+
+        String grade;
+
+        if (marks >= 90) {
+            grade = "A+";
+        } else if (marks >= 80) {
+            grade = "A";
+        } else if (marks >= 70) {
+            grade = "B";
+        } else if (marks >= 60) {
+            grade = "C";
+        } else if (marks >= 50) {
+            grade = "D";
+        } else {
+            grade = "F";
+        }
+
+        System.out.println("\n----- Student Details -----");
+        System.out.println("Name: " + name);
+        System.out.println("Roll Number: " + rollNo);
+        System.out.println("Marks: " + marks);
+        System.out.println("Grade: " + grade);
+
+        sc.close();
+    }
+}===== Student Management System =====
+Enter Student Name: Ameena
+Enter Roll Number: 101
+Enter Marks: 85
+
+----- Student Details -----
+Name: Ameena
+Roll Number: 101
+Marks: 85
+Grade: Aimport java.util.ArrayList;
+import java.util.Scanner;
+
+public class StudentManagement {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        ArrayList<String> students = new ArrayList<>();
+
+        System.out.println("===== Student Management System =====");
+
+        System.out.print("How many students do you want to add? ");
+        int n = sc.nextInt();
+        sc.nextLine();
+
+        for (int i = 1; i <= n; i++) {
+
+            System.out.print("Enter Student " + i + " Name: ");
+            String name = sc.nextLine();
+
+            students.add(name);
+        }
+
+        System.out.println("\n----- Student List -----");
+
+        for (String student : students) {
+            System.out.println(student);
+        }
+
+        sc.close();
+    }
+}===== Student Management System =====
+How many students do you want to add? 3
+
+Enter Student 1 Name: Ameena
+Enter Student 2 Name: Ayesha
+Enter Student 3 Name: Sana
+
+----- Student List -----
+Ameena
+Ayesha
+Sanaimport java.util.ArrayList;
+import java.util.Scanner;
+
+public class StudentManagement {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        ArrayList<String> students = new ArrayList<>();
+
+        System.out.println("===== Student Management System =====");
+
+        System.out.print("How many students do you want to add? ");
+        int n = sc.nextInt();
+        sc.nextLine();
+
+        // Add students
+        for (int i = 1; i <= n; i++) {
+
+            System.out.print("Enter Student " + i + " Name: ");
+            String name = sc.nextLine();
+
+            students.add(name);
+        }
+
+        // Display students
+        System.out.println("\n----- Student List -----");
+
+        for (String student : students) {
+            System.out.println(student);
+        }
+
+        // Search student
+        System.out.print("\nEnter student name to search: ");
+        String searchName = sc.nextLine();
+
+        if (students.contains(searchName)) {
+            System.out.println("Student found: " + searchName);
+        } else {
+            System.out.println("Student not found.");
+        }
+
+        sc.close();
+    }
+}===== Student Management System =====
+
+How many students do you want to add? 3
+
+Enter Student 1 Name: Ameena
+Enter Student 2 Name: Ayesha
+Enter Student 3 Name: Sana
+
+----- Student List -----
+Ameena
+Ayesha
+Sana
+
+Enter student name to search: Ameena
+Student found: Ameena
+public class Student {
+
+    String name;
+    int rollNo;
+    int marks;
+
+    Student(String name, int rollNo, int marks) {
+        this.name = name;
+        this.rollNo = rollNo;
+        this.marks = marks;
+    }
+
+    void displayStudent() {
+        System.out.println("Name: " + name);
+        System.out.println("Roll Number: " + rollNo);
+        System.out.println("Marks: " + marks);
+    }
+}
+javac Student.java StudentManagement.java
+java StudentManagementpublic class Student {
+
+    String name;
+    int rollNo;
+    int marks;
+
+    Student(String name, int rollNo, int marks) {
+        this.name = name;
+        this.rollNo = rollNo;
+        this.marks = marks;
+    }
+
+    void displayStudent() {
+        System.out.println("Name: " + name);
+        System.out.println("Roll Number: " + rollNo);
+        System.out.println("Marks: " + marks);
+    }
+}import java.util.ArrayList;
+import java.util.Scanner;
+
+public class StudentManagement {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Student> students = new ArrayList<>();
+
+        int choice;
+
+        do {
+            System.out.println("\n===== Student Management System =====");
+            System.out.println("1. Add Student");
+            System.out.println("2. View Students");
+            System.out.println("3. Search Student");
+            System.out.println("4. Update Student");
+            System.out.println("5. Delete Student");
+            System.out.println("6. Exit");
+
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+            sc.nextLine();
+
+            switch (choice) {
+
+                case 1:
+                    System.out.print("Enter Name: ");
+                    String name = sc.nextLine();
+
+                    System.out.print("Enter Roll Number: ");
+                    int rollNo = sc.nextInt();
+
+                    System.out.print("Enter Marks: ");
+                    int marks = sc.nextInt();
+
+                    students.add(new Student(name, rollNo, marks));
+
+                    System.out.println("Student added successfully!");
+                    break;
+
+                case 2:
+                    System.out.println("\n----- Student List -----");
+
+                    if (students.isEmpty()) {
+                        System.out.println("No students available.");
+                    } else {
+                        for (Student s : students) {
+                            s.displayStudent();
+                            System.out.println("------------------");
+                        }
+                    }
+                    break;
+
+                case 3:
+                    System.out.print("Enter Roll Number to search: ");
+                    int searchRoll = sc.nextInt();
+
+                    boolean found = false;
+
+                    for (Student s : students) {
+                        if (s.rollNo == searchRoll) {
+                            s.displayStudent();
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (!found) {
+                        System.out.println("Student not found.");
+                    }
+                    break;
+
+                case 4:
+                    System.out.print("Enter Roll Number to update: ");
+                    int updateRoll = sc.nextInt();
+                    sc.nextLine();
+
+                    found = false;
+
+                    for (Student s : students) {
+
+                        if (s.rollNo == updateRoll) {
+
+                            System.out.print("Enter New Name: ");
+                            s.name = sc.nextLine();
+
+                            System.out.print("Enter New Marks: ");
+                            s.marks = sc.nextInt();
+
+                            System.out.println("Student updated successfully!");
+
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (!found) {
+                        System.out.println("Student not found.");
+                    }
+                    break;
+
+                case 5:
+                    System.out.print("Enter Roll Number to delete: ");
+                    int deleteRoll = sc.nextInt();
+
+                    found = false;
+
+                    for (Student s : students) {
+
+                        if (s.rollNo == deleteRoll) {
+                            students.remove(s);
+                            System.out.println("Student deleted successfully!");
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (!found) {
+                        System.out.println("Student not found.");
+                    }
+                    break;
+
+                case 6:
+                    System.out.println("Thank you for using Student Management System!");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice!");
+            }
+
+        } while (choice != 6);
+
+        sc.close();
+    }
+}javac Student.java StudentManagement.javaimport java.util.ArrayList;
+import java.util.Scanner;
+
+public class StudentManagement {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        ArrayList<Student> students = new ArrayList<>();
+
+        System.out.print("Enter student name: ");
+        String name = sc.nextLine();
+
+        System.out.print("Enter roll number: ");
+        int rollNo = sc.nextInt();
+
+        System.out.print("Enter marks: ");
+        int marks = sc.nextInt();
+
+        Student student = new Student(name, rollNo, marks);
+
+        students.add(student);
+
+        System.out.println("\n----- Student Details -----");
+
+        for (Student s : students) {
+            s.displayStudent();
+        }
+
+        sc.close();
+    }
+}import java.util.ArrayList;
+import java.util.Scanner;
+
+public class StudentManagement {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        ArrayList<String> students = new ArrayList<>();
+
+        System.out.println("===== Student Management System =====");
+
+        System.out.print("How many students do you want to add? ");
+        int n = sc.nextInt();
+        sc.nextLine();
+
+        // Add students
+        for (int i = 1; i <= n; i++) {
+
+            System.out.print("Enter Student " + i + " Name: ");
+            String name = sc.nextLine();
+
+            students.add(name);
+        }
+
+        // Display students
+        System.out.println("\n----- Student List -----");
+
+        for (String student : students) {
+            System.out.println(student);
+        }
+
+        // Update student
+        System.out.print("\nEnter student name to update: ");
+        String oldName = sc.nextLine();
+
+        if (students.contains(oldName)) {
+
+            System.out.print("Enter new name: ");
+            String newName = sc.nextLine();
+
+            int index = students.indexOf(oldName);
+            students.set(index, newName);
+
+            System.out.println("Student updated successfully!");
+
+        } else {
+            System.out.println("Student not found.");
+        }
+
+        // Delete student
+        System.out.print("\nEnter student name to delete: ");
+        String deleteName = sc.nextLine();
+
+        if (students.remove(deleteName)) {
+            System.out.println("Student deleted successfully!");
+        } else {
+            System.out.println("Student not found.");
+        }
+
+        // Final list
+        System.out.println("\n----- Final Student List -----");
+
+        for (String student : students) {
+            System.out.println(student);
+        }
+
+        sc.close();
+    }
+}===== Student Management System =====
+
+How many students do you want to add? 3
+
+Enter Student 1 Name: Ameena
+Enter Student 2 Name: Ayesha
+Enter Student 3 Name: Sana
+
+----- Student List -----
+Ameena
+Ayesha
+Sana
+
+Enter student name to update: Ameena
+Enter new name: Amna
+Student updated successfully!
+
+Enter student name to delete: Sana
+Student deleted successfully!
+
+----- Final Student List -----
+Amna
+Ayeshaimport java.util.ArrayList;
+import java.util.Scanner;
+
+public class StudentManagement {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        ArrayList<String> students = new ArrayList<>();
+
+        int choice;
+
+        do {
+
+            System.out.println("\n===== Student Management System =====");
+            System.out.println("1. Add Student");
+            System.out.println("2. View Students");
+            System.out.println("3. Search Student");
+            System.out.println("4. Delete Student");
+            System.out.println("5. Exit");
+
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+            sc.nextLine();
+
+            switch (choice) {
+
+                case 1:
+                    System.out.print("Enter student name: ");
+                    String name = sc.nextLine();
+
+                    students.add(name);
+
+                    System.out.println("Student added successfully!");
+                    break;
+
+                case 2:
+                    System.out.println("\n----- Student List -----");
+
+                    if (students.isEmpty()) {
+                        System.out.println("No students available.");
+                    } else {
+                        for (String student : students) {
+                            System.out.println(student);
+                        }
+                    }
+                    break;
+
+                case 3:
+                    System.out.print("Enter student name to search: ");
+                    String searchName = sc.nextLine();
+
+                    if (students.contains(searchName)) {
+                        System.out.println("Student found!");
+                    } else {
+                        System.out.println("Student not found.");
+                    }
+                    break;
+
+                case 4:
+                    System.out.print("Enter student name to delete: ");
+                    String deleteName = sc.nextLine();
+
+                    if (students.remove(deleteName)) {
+                        System.out.println("Student deleted successfully!");
+                    } else {
+                        System.out.println("Student not found.");
+                    }
+                    break;
+
+                case 5:
+                    System.out.println("Thank you for using Student Management System!");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice!");
+            }
+
+        } while (choice != 5);
+
+        sc.close();
+    }
+}===== Student Management System =====
+
+How many students do you want to add? 3
+
+Enter Student 1 Name: Ameena
+Enter Student 2 Name: Ayesha
+Enter Student 3 Name: Sana
+
+----- Student List -----
+Ameena
+Ayesha
+Sana
+
+Enter student name to update: Ameena
+Enter new name: Amna
+Student updated successfully!
+
+Enter student name to delete: Sana
+Student deleted successfully!
+
+----- Final Student List -----
+Amna
+Ayeshapublic class StudentManagement {
 
     public static void main(String[] args) {
 
